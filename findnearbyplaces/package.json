@@ -1,6 +1,6 @@
 {
   "name": "findnearbyplaces",
-  "homepage": "http://yourusername.github.io/findnearbyplaces"
+  "homepage": "http://yourusername.github.io/findnearbyplaces",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
