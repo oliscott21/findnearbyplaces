@@ -2,7 +2,8 @@ let backendAddress = 'https://oliscott21-imagequiz-backend.herokuapp.com';
 backendAddress = "http://localhost:4002";
 
 let apiAccess = {
-    addCustomer: (name, email, password) => {
+
+    addCustomer: (email, password) => {
         return fetch(`${backendAddress}/register`, {
             method: 'Post',
             headers: {
@@ -45,6 +46,22 @@ let apiAccess = {
         })
        .then(x => x.json())
        .then(x => {
+            console.log(x);
+            return x;
+        });
+    },
+
+    addPlace: (name, category_id, latitude, longitude, description, user_id) => {
+        return fetch(`${backendAddress}/place`, {
+            method: 'Post',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true
+            }
+        })
+        .then(x => x.json())
+        .then(x => {
             console.log(x);
             return x;
         });

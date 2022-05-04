@@ -1,4 +1,5 @@
 import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 import { Row, Col, Container } from "react-bootstrap";
 import { HashRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./components/Home";

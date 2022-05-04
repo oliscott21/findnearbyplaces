@@ -1,4 +1,4 @@
-import { Navbar, Nav } from "react-bootstrap";
+import { Navbar, Nav, Container } from "react-bootstrap";
 import apiAccess from '../communication/APIAccess';
 
 const NavMenu = (props) => {
@@ -11,9 +11,17 @@ const NavMenu = (props) => {
     .catch(e => console.log(e));
   }
 
+
+      //<Navbar.Brand href="#">React</Navbar.Brand>
+
   return (
     <Navbar bg="light" className="na">
-        <Navbar.Brand href="#">React</Navbar.Brand>
+        <Navbar.Brand href="#">Yelp</Navbar.Brand>
+        <Nav className="ml-auto">
+            <Nav.Link href={"#/add"}>
+                Add Place
+            </Nav.Link>
+        </Nav>
         <Nav className="ms-auto">
             {
                 props.user ?
@@ -27,11 +35,11 @@ const NavMenu = (props) => {
                 </>
                 :
                 <>
-                    <Nav.Link href="#/register">
-                        Register
-                    </Nav.Link>
                     <Nav.Link href={"#/login"}>
                         Login
+                    </Nav.Link>
+                    <Nav.Link href="#/register">
+                        Register
                     </Nav.Link>
                 </>
             }
