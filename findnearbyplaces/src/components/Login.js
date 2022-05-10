@@ -26,12 +26,8 @@ const Login = (props) => {
         apiAccess.login(email, password)
         .then(x => {
             if(x.done) {
-                props.customerLoggedIn(email);
-                if (from) {
-                  navigate("/quiz/" + from);
-                } else {
-                  navigate('/');
-                }
+                props.customerLoggedIn(email, x.id);
+                navigate('/');
             } else {
                 alert('The credentials are not valid!');
             }

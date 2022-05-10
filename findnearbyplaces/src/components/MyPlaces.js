@@ -1,11 +1,10 @@
 import { Row, Col, Container, Form, Button } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useParams } from "react-router-dom";
 
 import apiAccess from '../communication/APIAccess';
 
-const Home = () => {
+const MyPlaces = () => {
 
     const [search, setSearch] = useState("");
     const [results, setResults] = useState("");
@@ -15,7 +14,6 @@ const Home = () => {
     const [cat, setCat] = useState([]);
 
     const navigate = useNavigate();
-    let { id } = useParams();
 
     let onSearchChanged = (e) => {
         setSearch(e.target.value);
@@ -40,19 +38,14 @@ const Home = () => {
 
     let onSubmitHandler = (e) => {
         e.preventDefault();
-        window.navigator.geolocation.getCurrentPosition(getPos, console.log);
+        window.navigator.geolocation.getCurrentPosition(getPos, console.log)
     }
 
     function getPos(pos) {
         let temp = "";
         temp += pos.coords.latitude + "," + pos.coords.longitude;
         let url = `/search?search_term=${search}&user_location=${temp}&radius_filter=${radius}&maximum_results_to_return=${results}&category_filter=${categoryFilter}&sort=${sort}`
-        apiAccess.search(url)
-        .then(x => {
-            localStorage.setItem("results", JSON.stringify(x));
-        }).then(y => {
-            navigate(`/place/${id}`);
-        })
+        apiAccess.search(url);
     };
 
     let getCategories = () => {
@@ -112,4 +105,4 @@ const Home = () => {
     );
 }
 
-export default Home;
+export default MyPlaces;

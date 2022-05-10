@@ -16,13 +16,13 @@ const NavMenu = (props) => {
 
   return (
     <Navbar bg="light" className="na">
-        <Navbar.Brand href="#">Yelp</Navbar.Brand>
+        <Navbar.Brand href={`#/${props.id}`}>Yelp</Navbar.Brand>
         <Nav className="ml-auto">
             {
 
                 props.user ?
                 <>
-                <Nav.Link href={"#/add"}>
+                <Nav.Link href={`#/add/${props.id}`}>
                     Add Place
                 </Nav.Link>
                 <Nav.Link href={"#/places"}>
@@ -41,7 +41,7 @@ const NavMenu = (props) => {
                     <Navbar.Text>
                         Signed in as {props.user}
                     </Navbar.Text>
-                    <Nav.Link href="#/" onClick={logout}>
+                    <Nav.Link href={`#/${props.id}`} onClick={logout}>
                         Logout
                     </Nav.Link>
                 </>
