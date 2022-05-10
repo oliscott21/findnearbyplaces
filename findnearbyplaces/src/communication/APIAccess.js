@@ -67,7 +67,23 @@ let apiAccess = {
         });
     },
 
+    getCategories: () => {
+        return fetch(`${backendAddress}/category`)
+        .then(x => x.json())
+        .then(x => {
+            console.log(x);
+            return x;
+        });
+    },
 
+    search: (url) => {
+        return fetch(`${backendAddress}` + url)
+        .then(x => x.json())
+        .then(x => {
+            console.log(x);
+            return x;
+        });
+    }
 }
 
 export default apiAccess;

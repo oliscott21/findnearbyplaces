@@ -18,9 +18,21 @@ const NavMenu = (props) => {
     <Navbar bg="light" className="na">
         <Navbar.Brand href="#">Yelp</Navbar.Brand>
         <Nav className="ml-auto">
-            <Nav.Link href={"#/add"}>
-                Add Place
-            </Nav.Link>
+            {
+
+                props.user ?
+                <>
+                <Nav.Link href={"#/add"}>
+                    Add Place
+                </Nav.Link>
+                <Nav.Link href={"#/places"}>
+                    My Places
+                </Nav.Link>
+                </>
+                :
+                <>
+                </>
+            }
         </Nav>
         <Nav className="ms-auto">
             {
