@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from "react-router-dom";
 
+import apiAccess from '../communication/APIAccess';
+
 const Place = () => {
 
     const [search, setSearch] = useState("");
@@ -25,6 +27,10 @@ const Place = () => {
     }
 
     let deletePlace = (place_id) => {
+        apiAccess.deletePlace(place_id, id)
+        .then(x => {
+            navigate(`/${id}`);
+        });
     }
 
     useEffect(

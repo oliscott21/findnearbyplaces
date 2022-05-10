@@ -49,6 +49,7 @@ const Home = () => {
         let url = `/search?search_term=${search}&user_location=${temp}&radius_filter=${radius}&maximum_results_to_return=${results}&category_filter=${categoryFilter}&sort=${sort}`
         apiAccess.search(url)
         .then(x => {
+            console.log(x);
             localStorage.setItem("results", JSON.stringify(x));
         }).then(y => {
             navigate(`/place/${id}`);

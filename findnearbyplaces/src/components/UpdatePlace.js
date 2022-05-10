@@ -7,15 +7,15 @@ import apiAccess from '../communication/APIAccess';
 
 const UpdatePlace = () => {
 
-    const [name, setName] = useState("");
-    const [latitude, setLatitude] = useState("");
-    const [longitude, setLongitude] = useState("");
-    const [category, setCategory] = useState("");
-    const [description, setDescription] = useState("");
+    const [name, setName] = useState(undefined);
+    const [latitude, setLatitude] = useState(undefined);
+    const [longitude, setLongitude] = useState(undefined);
+    const [category, setCategory] = useState(undefined);
+    const [description, setDescription] = useState(undefined);
     const [cat, setCat] = useState([]);
 
     const navigate = useNavigate();
-    let { id } = useParams();
+    let { place_id, user_id } = useParams();
 
     let onNameChanged = (e) => {
         setName(e.target.value);
@@ -43,10 +43,10 @@ const UpdatePlace = () => {
 
     let onSubmitHandler = (e) => {
         e.preventDefault();
-        apiAccess.addPlace(name, category, latitude, longitude, description, id)
+        apiAccess.updatePlace(place_id, user_id, name, category, latitude, longitude, description)
         .then(x => {
-            console.log(x);
-            navigate("/");
+            navigate(`/${user_id}`);
+
         })
         .catch(e => {
             console.log(e);
@@ -71,12 +71,12 @@ const UpdatePlace = () => {
             <Form onSubmit={onSubmitHandler}>
                 <Form.Group className="mb-3">
                     <Form.Label>Name</Form.Label>
-                    <Form.Control type="search" placeholder="Enter Search" value={name} onChange={onNameChanged} required/>
+                    <Form.Control type="search" placeholder="Enter Search" value={name} onChange={onNameChanged}/>
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control as="select" value={category} onChange={onCategoryChanged} required>
+                    <Form.Control as="select" value={category} onChange={onCategoryChanged}>
                         <option key="" value=""> </option>
                         {
                             cat.map((option, index) => {
@@ -88,20 +88,16 @@ const UpdatePlace = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Latitude</Form.Label>
-                    <Form.Control type="number" value={latitude} onChange={onLatitudeChanged} required/>
+                    <Form.Control type="number" value={latitude} onChange={onLatitudeChanged}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Longitude</Form.Label>
-                    <Form.Control type="number" value={longitude} onChange={onLongitudeChanged} required/>
+                    <Form.Control type="number" value={longitude} onChange={onLongitudeChanged}/>
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Description</Form.Label>
-                    <Form.Control as="textarea" maxLength={256} rows={4} value={description} onChange={onDescriptionChanged} required/>
+                    <Form.Control as="textarea" maxLength={256} rows={4} value={description} onChange={onDescriptionChanged}/>
                 </Form.Group>
-
-                <Button variant="primary" onClick={addCatagoryHandler}>
-                    Add Category
-                </Button>
 
                 <Button variant="primary" type="submit">
                     Submit
@@ -110,8 +106,5 @@ const UpdatePlace = () => {
         </Container>
     );
 }
-//Caffe Luce
-//32
-//110
-//House-roasted coffee & espresso drinks, along with pastries, served in modern, compact quarters.
+
 export default UpdatePlace;

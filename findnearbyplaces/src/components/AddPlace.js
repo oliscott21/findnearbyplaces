@@ -46,7 +46,7 @@ const AddPlace = () => {
         apiAccess.addPlace(name, category, latitude, longitude, description, id)
         .then(x => {
             console.log(x);
-            navigate("/");
+            navigate(`/${id}`);
         })
         .catch(e => {
             console.log(e);

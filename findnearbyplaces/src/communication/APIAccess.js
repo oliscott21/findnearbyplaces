@@ -61,6 +61,7 @@ let apiAccess = {
     },
 
     search: (url) => {
+        console.log(url);
         return fetch(`${backendAddress}` + url)
         .then(x => x.json())
         .then(x => {
@@ -118,7 +119,24 @@ let apiAccess = {
           console.log(x);
           return x;
       });
-    }
+    },
+
+    deletePlace: (place_id, user_id) => {
+      return fetch(`${backendAddress}/place`, {
+          method: 'Delete',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Credentials': true
+          },
+          body: JSON.stringify({place_id, user_id})
+      })
+      .then(x => x.json())
+      .then(x => {
+          console.log(x);
+          return x;
+      });
+    },
 
 
 }
