@@ -1,5 +1,4 @@
 let backendAddress = 'https://oliscott21-imagequiz-backend.herokuapp.com';
-backendAddress = "http://localhost:4002";
 
 let apiAccess = {
 
