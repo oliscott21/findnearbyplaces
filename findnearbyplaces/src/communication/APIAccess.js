@@ -170,7 +170,7 @@ let apiAccess = {
         });
     },
 
-    updateReview: (review_id, description, rating, user_id) => {
+    updateReview: (review_id, comment, rating, user_id) => {
       return fetch(`${backendAddress}/review`, {
           method: 'Put',
           credentials: 'include',
@@ -178,7 +178,7 @@ let apiAccess = {
               'Content-Type': 'application/json',
               'Access-Control-Allow-Credentials': true
           },
-          body: JSON.stringify({review_id, description, rating, user_id})
+          body: JSON.stringify({review_id, comment, rating, user_id})
       })
       .then(x => x.json())
       .then(x => {

@@ -7,8 +7,8 @@ import apiAccess from '../communication/APIAccess';
 
 const UpdateReview = () => {
 
-    const [rating, setRating] = useState("");
-    const [description, setDescription] = useState("");
+    const [rating, setRating] = useState(undefined);
+    const [description, setDescription] = useState(undefined);
 
     const navigate = useNavigate();
     let { place_id, user_id } = useParams();
@@ -24,6 +24,8 @@ const UpdateReview = () => {
 
     let onSubmitHandler = (e) => {
         e.preventDefault();
+
+        console.log(description);
         apiAccess.updateReview(place_id, description, rating, user_id)
         .then(x => {
             navigate(`/${user_id}`);
@@ -42,7 +44,7 @@ const UpdateReview = () => {
                     <Form.Control type="number" placeholder="Enter Rating" max={10} value={rating} onChange={onRatingChanged}/>
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-3">
                     <Form.Label>Description</Form.Label>
                     <Form.Control as="textarea" maxLength={512} rows={4} value={description} onChange={onDescriptionChanged}/>
                 </Form.Group>
