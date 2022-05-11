@@ -61,7 +61,6 @@ let apiAccess = {
     },
 
     search: (url) => {
-        console.log(url);
         return fetch(`${backendAddress}` + url)
         .then(x => x.json())
         .then(x => {
@@ -138,6 +137,72 @@ let apiAccess = {
       });
     },
 
+    getReview: (place_id) => {
+      return fetch(`${backendAddress}/review?place_id=${place_id}`, {
+          method: 'Get',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Credentials': true
+          },
+      })
+      .then(x => x.json())
+      .then(x => {
+          console.log(x);
+          return x;
+      });
+    },
+
+    addReview: (place_id, comment, rating, user_id) => {
+        return fetch(`${backendAddress}/review`, {
+            method: 'Post',
+            credentials: 'include',
+            headers: {
+                'Content-Type': 'application/json',
+                'Access-Control-Allow-Credentials': true
+            },
+            body: JSON.stringify({place_id, user_id, comment, rating})
+        })
+        .then(x => x.json())
+        .then(x => {
+            console.log(x);
+            return x;
+        });
+    },
+
+    updateReview: (review_id, description, rating, user_id) => {
+      return fetch(`${backendAddress}/review`, {
+          method: 'Put',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Credentials': true
+          },
+          body: JSON.stringify({review_id, description, rating, user_id})
+      })
+      .then(x => x.json())
+      .then(x => {
+          console.log(x);
+          return x;
+      });
+    },
+
+    deleteReview: (review_id, user_id) => {
+      return fetch(`${backendAddress}/review`, {
+          method: 'Delete',
+          credentials: 'include',
+          headers: {
+              'Content-Type': 'application/json',
+              'Access-Control-Allow-Credentials': true
+          },
+          body: JSON.stringify({review_id, user_id})
+      })
+      .then(x => x.json())
+      .then(x => {
+          console.log(x);
+          return x;
+      });
+    },
 
 }
 

@@ -10,8 +10,7 @@ const Login = (props) => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-    const { from } = useParams();
-
+    const { user_id } = useParams();
 
     let onEmailChanged = (e) => {
         setEmail(e.target.value);
@@ -27,7 +26,7 @@ const Login = (props) => {
         .then(x => {
             if(x.done) {
                 props.customerLoggedIn(email, x.id);
-                navigate('/');
+                navigate(`/${user_id}`);
             } else {
                 alert('The credentials are not valid!');
             }

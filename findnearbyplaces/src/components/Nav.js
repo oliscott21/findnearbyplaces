@@ -11,9 +11,6 @@ const NavMenu = (props) => {
     .catch(e => console.log(e));
   }
 
-
-      //<Navbar.Brand href="#">React</Navbar.Brand>
-
   return (
     <Navbar bg="light" className="na">
         <Navbar.Brand href={`#/${props.id}`}>Yelp</Navbar.Brand>
@@ -47,7 +44,7 @@ const NavMenu = (props) => {
                 </>
                 :
                 <>
-                    <Nav.Link href={"#/login"}>
+                    <Nav.Link href={`#/login`}>
                         Login
                     </Nav.Link>
                     <Nav.Link href="#/register">

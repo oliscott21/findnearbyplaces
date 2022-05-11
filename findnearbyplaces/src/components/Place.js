@@ -18,8 +18,12 @@ const Place = () => {
         setResults(temp);
     }
 
-    let temp = (name) => {
-        console.log(name);
+    let review = (place_id) => {
+        navigate(`/review/${place_id}/${id}`);
+    }
+
+    let addReview = (place_id) => {
+        navigate(`/addReview/${place_id}/${id}`);
     }
 
     let updatePlace = (place_id) => {
@@ -45,15 +49,15 @@ const Place = () => {
               <>
               {
                   results.result.map((option, index) => {
-                      return (<Card key={option.id} onClick={() => temp(option.id)}>
+                      return (<Card key={option.id}>
                         <Card.Body>
-                            <Card.Title>
+                            <Card.Title onClick={() => review(option.id)}>
                               {option.name}
                             </Card.Title>
-                            <Card.Text>
+                            <Card.Text onClick={() => review(option.id)}>
                               {option.description}
                             </Card.Text>
-                            <Button>Write Review</Button>
+                            <Button onClick={() => addReview(option.id)}>Write Review</Button>
                             { option.customer_id == id && (
                               <>
                               <Button onClick={() => updatePlace(option.id)}>Edit Place</Button>

@@ -11,6 +11,10 @@ import MyPlaces from "./components/MyPlaces";
 import AddCat from "./components/AddCat";
 import Place from "./components/Place";
 import UpdatePlace from "./components/UpdatePlace";
+import Review from "./components/Review";
+import AddReview from "./components/AddReview";
+import UpdateReview from "./components/UpdateReview";
+
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 
@@ -46,7 +50,7 @@ function App() {
 
                     <Routes>
                         <Route path="/:id" element={<Home />} />
-                        <Route path="/login/:from" element={<Login customerLoggedIn={customerLoggedInHandler} />}>
+                        <Route path="/login/:user_id" element={<Login customerLoggedIn={customerLoggedInHandler} />}>
                         </Route>
                         <Route path="/login" element={<Login customerLoggedIn={customerLoggedInHandler} />}>
                         </Route>
@@ -61,6 +65,12 @@ function App() {
                         <Route path="/place/:id" element={<Place />}>
                         </Route>
                         <Route path="/updatePlace/:place_id/:user_id" element={<UpdatePlace />}>
+                        </Route>
+                        <Route path="/review/:place_id/:user_id" element={<Review />}>
+                        </Route>
+                        <Route path="/addReview/:place_id/:user_id" element={<AddReview />}>
+                        </Route>
+                        <Route path="/updateReview/:place_id/:user_id" element={<UpdateReview />}>
                         </Route>
                     </Routes>
                 </Container>
